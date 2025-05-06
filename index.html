@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .todo-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .todo-item span {
+            flex-grow: 1;
+        }
+        .btn-remove {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Todo List</h1>
+        <form id="todo-form" class="mb-4">
+            <div class="input-group">
+                <input type="text" id="todo-input" class="form-control" placeholder="Add a new todo" required>
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Add</button>
+                </div>
+            </div>
+        </form>
+        <ul id="todo-list" class="list-group">
+        </ul>
+    </div>
+
+    <script>
+        const form = document.getElementById('todo-form');
+        const input = document.getElementById('todo-input');
+        const todoList = document.getElementById('todo-list');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const todoText = input.value.trim();
+            if (todoText) {
+                const li = document.createElement('li');
+                li.className = 'list-group-item todo-item';
+                li.innerHTML = `<span>${todoText}</span><button class="btn btn-danger btn-remove">Remove</button>`;
+                todoList.appendChild(li);
+                input.value = '';
+            }
+        });
+
+        todoList.addEventListener('click', function(event) {
+            if (event.target.classList.contains('btn-remove')) {
+                const li = event.target.parentElement;
+                todoList.removeChild(li);
+            }
+        });
+    </script>
+</body>
+</html>
