@@ -8,26 +8,58 @@
     <style>
         body {
             background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
         }
         .container {
             margin-top: 50px;
+            max-width: 600px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
         }
-        .todo-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        h1 {
+            font-weight: bold;
+            color: #343a40;
         }
-        .todo-item span {
-            flex-grow: 1;
+        .input-group {
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .form-control {
+            border: none;
+            box-shadow: none;
+        }
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #007bff;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .list-group-item {
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         .btn-remove {
-            margin-left: 10px;
+            background-color: #dc3545;
+            border: none;
+            color: #fff;
+        }
+        .btn-remove:hover {
+            background-color: #c82333;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="text-center">Todo List</h1>
+        <h1 class="text-center mb-4">Todo List</h1>
         <form id="todo-form" class="mb-4">
             <div class="input-group">
                 <input type="text" id="todo-input" class="form-control" placeholder="Add a new todo" required>
@@ -50,8 +82,8 @@
             const todoText = input.value.trim();
             if (todoText) {
                 const li = document.createElement('li');
-                li.className = 'list-group-item todo-item';
-                li.innerHTML = `<span>${todoText}</span><button class="btn btn-danger btn-remove">Remove</button>`;
+                li.className = 'list-group-item d-flex justify-content-between align-items-center';
+                li.innerHTML = `<span>${todoText}</span><button class="btn btn-remove">Remove</button>`;
                 todoList.appendChild(li);
                 input.value = '';
             }
